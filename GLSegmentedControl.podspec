@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "GLSegmentedControl"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "页面顶部切换标签"
   s.homepage     = "https://github.com/colynlei/GLSegmentedControl"
   s.license      = "MIT"
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.source_files = "Classes", "GLSegmentedControl/GLSegmentedControl.{h,m}"
   s.ios.deployment_target = "9.0"
   s.requires_arc = true
-  s.dependency = 'YYKit', :git => 'git@github.com:ibireme/YYKit.git'
+  s.dependency "YYKit", '~> 1.0.9'
 
 
 
