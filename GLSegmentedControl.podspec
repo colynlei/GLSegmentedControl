@@ -8,24 +8,17 @@
 
 Pod::Spec.new do |s|
   s.name         = "GLSegmentedControl"
-  s.version      = "1.0.7"
+  s.version      = "1.1.0"
   s.summary      = "页面顶部切换标签"
   s.homepage     = "https://github.com/colynlei/GLSegmentedControl"
   s.license      = "MIT"
   s.author       = { "『国』" => "leiguolin@huobi.com" }
   s.source       = { :git => "https://github.com/colynlei/GLSegmentedControl.git", :tag => "#{s.version}" }
   s.source_files = "Classes", "GLSegmentedControl/GLSegmentedControl.{h,m}"
-  s.ios.deployment_target = "8.0"
+  s.ios.deployment_target = "9.0"
   s.requires_arc = true
+  s.dependency = 'YYKit', :git => 'git@github.com:ibireme/YYKit.git'
 
-  s.subspec 'GLSegmentedControl' do |segmentedControl|
-      segmentedControl.source_files = 'Pod/Classes/GLSegmentedControl/**/*'
-      segmentedControl.public_header_files = 'Pod/Classes/GLSegmentedControl/**/*.h'
-      segmentedControl.dependency 'YYKit', '~> 1.0.0'
-  end
-
-
-#  s.dependency "YYKit"
 
 
 end
