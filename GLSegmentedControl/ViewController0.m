@@ -10,9 +10,11 @@
 #import "ViewController0.h"
 #import "GLSegmentedControl.h"
 
-@interface ViewController0 ()
+@interface ViewController0 ()<UIScrollViewDelegate,GLSegmentedControlDelegate>
 
 @property (nonatomic, strong) GLSegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray *titles;
 
 @end
 
@@ -24,17 +26,48 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.titles = @[@"北京市",@"海淀区",@"西二旗"];
+    
     [self.view addSubview:self.segmentedControl];
+    [self.view addSubview:self.scrollView];
+    
+    for (NSInteger i = 0; i<self.titles.count; i++) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(i*kScreenWidth, 0, kScreenWidth, self.scrollView.frame.size.height)];
+        label.backgroundColor = kColorRandomAlpha(0.3);
+        label.text = [NSString stringWithFormat:@"%ld",i];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
+        [self.scrollView addSubview:label];
+    }
+    self.scrollView.contentSize = CGSizeMake(self.titles.count*kScreenWidth, self.scrollView.frame.size.height);
 }
 
 - (GLSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
         _segmentedControl = [[GLSegmentedControl alloc] init];
-        _segmentedControl.titles = @[@"北京市",@"海淀区",@"西二旗"];
+        _segmentedControl.delegate = self;
+        _segmentedControl.titles = self.titles;
         _segmentedControl.backgroundColor = [UIColor whiteColor];
         _segmentedControl.titleGapType = GLSegmentedControlTitleGapTypeNone;
     }
     return _segmentedControl;
+}
+
+- (void)segmentedControl:(GLSegmentedControl *)segmentedControl didSelectedIndex:(NSInteger)index {
+    [self.scrollView setContentOffset:CGPointMake(index*kScreenWidth, 0) animated:YES];
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 200, kScreenWidth, 150)];
+        _scrollView.pagingEnabled = YES;
+        _scrollView.delegate = self;
+    }
+    return _scrollView;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.segmentedControl.selectedIndex = scrollView.contentOffset.x/kScreenWidth;
 }
 
 - (void)viewDidLayoutSubviews {

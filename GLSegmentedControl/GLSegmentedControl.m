@@ -146,12 +146,14 @@
     
     GLLabel *label = (GLLabel *)tap.view;
     
+    self.selectedIndex = label.tag-Title_tag;
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(segmentedControl:didSelectedIndex:)]) {
-        [self.delegate segmentedControl:self didSelectedIndex:label.tag-Title_tag];
+        [self.delegate segmentedControl:self didSelectedIndex:self.selectedIndex];
     }
     
-    if (label == self.selectedTitleLabel) return;
-    [self currentSelectedTitleLabel:label];
+//    if (label == self.selectedTitleLabel) return;
+//    [self currentSelectedTitleLabel:label];
 }
 
 - (void)currentSelectedTitleLabel:(GLLabel *)label {
