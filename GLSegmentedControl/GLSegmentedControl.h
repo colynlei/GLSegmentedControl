@@ -24,8 +24,7 @@ typedef NS_ENUM(NSInteger, GLSegmentedControlTitleGapType) {//间距类型
 
 @interface GLSegmentedControl : UIView
 
-- (instancetype)init;
-- (instancetype)initWithFrame:(CGRect)frame;
+
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray <NSString *>* _Nonnull )titles;
 
 @property (nonatomic, strong) NSArray <NSString *>*titles;//标题数组
