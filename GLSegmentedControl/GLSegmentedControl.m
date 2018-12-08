@@ -7,7 +7,7 @@
 //
 
 #import "GLSegmentedControl.h"
-#import <YYKit/YYKit.h>
+//#import <YYKit/YYKit.h>
 
 #define Title_tag 39572339
 
