@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "GLSegmentedControl"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "滑块控件，类似于系统UISlider"
   s.homepage     = "https://github.com/colynlei/GLSegmentedControl"
   s.license      = "MIT"
@@ -17,7 +17,15 @@ Pod::Spec.new do |s|
   s.source_files = "Classes", "GLSegmentedControl/GLSegmentedControl.{h,m}"
   s.ios.deployment_target = "8.0"
   s.requires_arc = true
-  s.dependency "YYKit"
+
+  s.subspec 'GLSegmentedControl' do |segmentedControl|
+      segmentedControl.source_files = 'Pod/Classes/segmentedControl/**/*'
+      segmentedControl.public_header_files = 'Pod/Classes/segmentedControl/**/*.h'
+      segmentedControl.dependency 'YYKit', '~> 1.0.0'
+  end
+
+
+#  s.dependency "YYKit"
 
 
 end
