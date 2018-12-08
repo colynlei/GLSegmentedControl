@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "GLSegmentedControl"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "页面顶部切换标签"
   s.homepage     = "https://github.com/colynlei/GLSegmentedControl"
   s.license      = "MIT"
