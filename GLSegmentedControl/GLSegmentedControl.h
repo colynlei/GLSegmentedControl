@@ -24,7 +24,6 @@ typedef NS_ENUM(NSInteger, GLSegmentedControlTitleGapType) {//间距类型
 
 @interface GLSegmentedControl : UIView
 
-
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray <NSString *>* _Nonnull )titles;
 
 @property (nonatomic, strong) NSArray <NSString *>*titles;//标题数组
@@ -42,7 +41,6 @@ typedef NS_ENUM(NSInteger, GLSegmentedControlTitleGapType) {//间距类型
 @property (nonatomic, assign) CGFloat titleGap;//标题间距，默认10.
 
 @property (nonatomic, assign) NSInteger selectedIndex;
-
 
 @property (nonatomic, strong) UIImage        *lineViewImage;//底部滑块图片，默认无图片
 @property (nonatomic, assign) CGSize         lineViewSize;//底部滑块宽高，默认为CGSizeMake(0,5),当宽度为0时，自动计算为文字宽度。
