@@ -7,7 +7,10 @@
 //
 
 #import "GLSegmentedControl.h"
-#import <YYKit/YYKit.h>
+
+#define Self_W self.frame.size.width
+#define Self_H self.frame.size.height
+
 
 #define Title_tag 39572339
 
@@ -51,11 +54,11 @@
     _titleGap = 10;
     _titleGapType = GLSegmentedControlTitleGapTypeDefault;
     
-    _selectedFont = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
-    _selectedColor = [UIColor colorWithHexString:@"#0DBDC9"];
-    
     _normalFont = [UIFont systemFontOfSize:14];
-    _normalColor = [UIColor colorWithHexString:@"#404B69"];
+    _normalColor = [UIColor blackColor];
+    
+    _selectedFont = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+    _selectedColor = [UIColor redColor];
 }
 
 - (void)addsubviews {
@@ -143,7 +146,7 @@
     for (NSInteger i = 0; i < self.titles.count; i++) {
         UILabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (label) {
-            CGFloat w = [label.text widthForFont:label.font];
+            CGFloat w = [self widthWithText:label.text font:label.font];
             [self.titleLabelWArray addObject:@(w)];
             all_w += w;
         }
@@ -159,10 +162,10 @@
         case GLSegmentedControlTitleGapTypeEqualGapBoth:
         {
             
-            if (all_w > self.width) {
+            if (all_w > Self_W) {
                 NSLog(@"所有字体总宽度大于当前视图所容许宽");
             } else {
-                gap = (self.width-all_w)/(self.titles.count+1);
+                gap = (Self_W-all_w)/(self.titles.count+1);
                 left = gap;
                 right = gap;
             }
@@ -170,10 +173,10 @@
             break;
         case GLSegmentedControlTitleGapTypeEqualGapWithoutBoth:
         {
-            if (all_w > self.width-left-right) {
+            if (all_w > Self_W-left-right) {
                 NSLog(@"所有字体总宽度大于当前视图所容许宽度");
             } else {
-                gap = (self.width-all_w-left-right)/(self.titles.count-1);
+                gap = (Self_W-all_w-left-right)/(self.titles.count-1);
             }
         }
             break;
@@ -189,22 +192,22 @@
             CGFloat w = [self.titleLabelWArray[i] floatValue];
             if (i > 0) {
                 UILabel *lastLabel = [self.scrollView viewWithTag:Title_tag+i-1];
-                x = lastLabel.frame.origin.x+lastLabel.width+gap;
+                x = lastLabel.frame.origin.x+lastLabel.frame.size.width+gap;
             }
             
-            label.frame = CGRectMake(x, 0, w, self.scrollView.height);
+            label.frame = CGRectMake(x, 0, w, Self_H);
             
             if (i == self.titles.count-1) {
-                self.scrollView.contentSize = CGSizeMake(label.frame.origin.x+w+right, self.scrollView.height);
+                self.scrollView.contentSize = CGSizeMake(label.frame.origin.x+w+right, Self_H);
             }
         }
     }
     
     CGFloat h = self.lineViewSize.height;
-    CGFloat x = self.lineViewSize.width==0?self.selectedTitleLabel.frame.origin.x:(self.selectedTitleLabel.centerX-self.lineViewSize.width/2);
-    CGFloat y = self.height-h;
-    CGFloat w = self.lineViewSize.width==0?self.selectedTitleLabel.width:self.lineViewSize.width;
-    NSTimeInterval duration = self.lineView.origin.y == 0?0:self.lineViewAnimationDuration;
+    CGFloat x = self.lineViewSize.width==0?self.selectedTitleLabel.frame.origin.x:(self.selectedTitleLabel.center.x-self.lineViewSize.width/2);
+    CGFloat y = Self_H-h;
+    CGFloat w = self.lineViewSize.width==0?self.selectedTitleLabel.frame.size.width:self.lineViewSize.width;
+    NSTimeInterval duration = self.lineView.frame.origin.y == 0?0:self.lineViewAnimationDuration;
     [UIView animateWithDuration:duration animations:^{
         self.lineView.frame = CGRectMake(x, y, w, h);
     }];
@@ -223,6 +226,17 @@
         }
     }
     [self setSelectedIndex:self.selectedIndex];
+}
+
+- (CGFloat)widthWithText:(NSString *)text font:(UIFont *)font {
+    CGSize result;
+    NSMutableDictionary *attr = [NSMutableDictionary new];
+    attr[NSFontAttributeName] = font;
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+                                     options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                  attributes:attr context:nil];
+    result = rect.size;
+    return rect.size.width;
 }
 
 @end
