@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "GLSegmentedControl"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "滑块控件，类似于系统UISlider"
   s.homepage     = "https://github.com/colynlei/GLSegmentedControl"
   s.license      = "MIT"
