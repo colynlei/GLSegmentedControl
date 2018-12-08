@@ -17,6 +17,7 @@
 		7A468EE221BA52E30059D372 /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A468EE121BA52E30059D372 /* ViewController1.m */; };
 		7A468EE521BA70AB0059D372 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A468EE421BA70AB0059D372 /* ViewController2.m */; };
 		7A468EE821BBDE660059D372 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A468EE721BBDE660059D372 /* ViewController3.m */; };
+		7A468EF621BC59C80059D372 /* ViewController0.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A468EF521BC59C80059D372 /* ViewController0.m */; };
 		E4FE4EEF6B5E81AA9F4A2D44 /* libPods-GLSegmentedControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 771F422585084C7F104C1820 /* libPods-GLSegmentedControl.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,8 @@
 		7A468EE721BBDE660059D372 /* ViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		7A468EE921BBE1570059D372 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		7A468EEB21BBE17E0059D372 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		7A468EF421BC59C80059D372 /* ViewController0.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController0.h; sourceTree = "<group>"; };
+		7A468EF521BC59C80059D372 /* ViewController0.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController0.m; sourceTree = "<group>"; };
 		E0AFAE3102C08089E0CCFC4D /* Pods-GLSegmentedControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GLSegmentedControl.release.xcconfig"; path = "Pods/Target Support Files/Pods-GLSegmentedControl/Pods-GLSegmentedControl.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +94,8 @@
 				7A468EC821BA22C80059D372 /* AppDelegate.m */,
 				7A468ECA21BA22C80059D372 /* ViewController.h */,
 				7A468ECB21BA22C80059D372 /* ViewController.m */,
+				7A468EF421BC59C80059D372 /* ViewController0.h */,
+				7A468EF521BC59C80059D372 /* ViewController0.m */,
 				7A468EE021BA52E30059D372 /* ViewController1.h */,
 				7A468EE121BA52E30059D372 /* ViewController1.m */,
 				7A468EE321BA70AB0059D372 /* ViewController2.h */,
@@ -218,6 +223,7 @@
 				7A468EE221BA52E30059D372 /* ViewController1.m in Sources */,
 				7A468ECC21BA22C80059D372 /* ViewController.m in Sources */,
 				7A468ED721BA22CA0059D372 /* main.m in Sources */,
+				7A468EF621BC59C80059D372 /* ViewController0.m in Sources */,
 				7A468EC921BA22C80059D372 /* AppDelegate.m in Sources */,
 				7A468EDF21BA24200059D372 /* GLSegmentedControl.m in Sources */,
 				7A468EE521BA70AB0059D372 /* ViewController2.m in Sources */,

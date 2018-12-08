@@ -11,36 +11,56 @@
 #define Self_W self.frame.size.width
 #define Self_H self.frame.size.height
 
-
 #define Title_tag 39572339
+
+@interface GLLabel : UILabel
+
+@property (nonatomic, assign) CGFloat titleW;//字体宽度
+
+@end
+
+@implementation GLLabel
+
+
+@end
+
+
 
 @interface GLSegmentedControl ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *lineView;
-@property (nonatomic, strong) UILabel *selectedTitleLabel;
+@property (nonatomic, strong) GLLabel *selectedTitleLabel;
 @property (nonatomic, strong) NSMutableArray *titleLabelWArray;
 
 @end
 
 @implementation GLSegmentedControl
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self initDataWithTitles:nil];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    return [self initWithFrame:frame titles:@[]];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray<NSString *> * _Nonnull)titles {
     self = [super initWithFrame:frame];
     if (self) {
         
-        
-        [self initDefault];
-        [self addsubviews];
-        
-        self.titles = titles;
+        [self initDataWithTitles:titles];
         
     }
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    return [self initWithFrame:frame titles:@[]];
+- (void)initDataWithTitles:(NSArray *)titles {
+    [self initDefault];
+    [self addsubviews];
+    
+    self.titles = titles;
 }
 
 - (void)initDefault {
@@ -93,7 +113,7 @@
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     _selectedIndex = selectedIndex;
-    UILabel *label = [self.scrollView viewWithTag:Title_tag+selectedIndex];
+    GLLabel *label = [self.scrollView viewWithTag:Title_tag+selectedIndex];
     if (label) {
         [self currentSelectedTitleLabel:label];
     }
@@ -106,11 +126,12 @@
     
     for (NSInteger i = 0; i < titles.count; i++) {
         
-        UILabel *label = [self.scrollView viewWithTag:Title_tag+i];
+        GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (!label) {
-            label = [[UILabel alloc] init];
+            label = [[GLLabel alloc] init];
             label.tag = Title_tag+i;
             label.userInteractionEnabled = YES;
+            label.textAlignment = NSTextAlignmentCenter;
             
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleAction:)];
             [label addGestureRecognizer:tap];
@@ -122,12 +143,18 @@
 }
 
 - (void)titleAction:(UITapGestureRecognizer *)tap {
-    UILabel *label = (UILabel *)tap.view;
+    
+    GLLabel *label = (GLLabel *)tap.view;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(segmentedControl:didSelectedIndex:)]) {
+        [self.delegate segmentedControl:self didSelectedIndex:label.tag-Title_tag];
+    }
+    
     if (label == self.selectedTitleLabel) return;
     [self currentSelectedTitleLabel:label];
 }
 
-- (void)currentSelectedTitleLabel:(UILabel *)label {
+- (void)currentSelectedTitleLabel:(GLLabel *)label {
     if (label == nil) return;
     self.selectedTitleLabel.font = self.normalFont;
     self.selectedTitleLabel.textColor = self.normalColor;
@@ -144,19 +171,33 @@
     [self.titleLabelWArray removeAllObjects];
     CGFloat all_w = 0;//计算出所有字体的宽度
     for (NSInteger i = 0; i < self.titles.count; i++) {
-        UILabel *label = [self.scrollView viewWithTag:Title_tag+i];
+        GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (label) {
-            CGFloat w = [self widthWithText:label.text font:label.font];
-            [self.titleLabelWArray addObject:@(w)];
-            all_w += w;
+            label.titleW = [self widthWithText:label.text font:label.font];
+            [self.titleLabelWArray addObject:@(label.titleW)];
+            all_w += label.titleW;
         }
     }
     
     CGFloat gap = self.titleGap;
     CGFloat left = self.titleLeft;
     CGFloat right = self.titleRight;
+    BOOL isTitle_W = YES;
+    
 
     switch (self.titleGapType) {
+        case GLSegmentedControlTitleGapTypeNone:
+        {
+            if (all_w > Self_W) {
+                NSLog(@"所有字体总宽度大于当前视图所容许宽");
+            } else {
+                gap = 0;
+                left = 0;
+                right = 0;
+                isTitle_W = NO;
+            }
+        }
+            break;
         case GLSegmentedControlTitleGapTypeDefault:
             break;
         case GLSegmentedControlTitleGapTypeEqualGapBoth:
@@ -186,12 +227,12 @@
     }
     
     for (NSInteger i = 0; i < self.titles.count; i++) {
-        UILabel *label = [self.scrollView viewWithTag:Title_tag+i];
+        GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (label) {
             CGFloat x = left;
-            CGFloat w = [self.titleLabelWArray[i] floatValue];
+            CGFloat w = isTitle_W?[self.titleLabelWArray[i] floatValue]:(Self_W/self.titles.count);
             if (i > 0) {
-                UILabel *lastLabel = [self.scrollView viewWithTag:Title_tag+i-1];
+                GLLabel *lastLabel = [self.scrollView viewWithTag:Title_tag+i-1];
                 x = lastLabel.frame.origin.x+lastLabel.frame.size.width+gap;
             }
             
@@ -204,9 +245,9 @@
     }
     
     CGFloat h = self.lineViewSize.height;
-    CGFloat x = self.lineViewSize.width==0?self.selectedTitleLabel.frame.origin.x:(self.selectedTitleLabel.center.x-self.lineViewSize.width/2);
+    CGFloat x = self.lineViewSize.width==0?(self.selectedTitleLabel.center.x-self.selectedTitleLabel.titleW/2):(self.selectedTitleLabel.center.x-self.lineViewSize.width/2);
     CGFloat y = Self_H-h;
-    CGFloat w = self.lineViewSize.width==0?self.selectedTitleLabel.frame.size.width:self.lineViewSize.width;
+    CGFloat w = self.lineViewSize.width==0?self.selectedTitleLabel.titleW:self.lineViewSize.width;
     NSTimeInterval duration = self.lineView.frame.origin.y == 0?0:self.lineViewAnimationDuration;
     [UIView animateWithDuration:duration animations:^{
         self.lineView.frame = CGRectMake(x, y, w, h);
@@ -219,7 +260,7 @@
     [self.scrollView bringSubviewToFront:self.lineView];
     self.scrollView.frame = self.bounds;
     for (NSInteger i = 0; i < self.titles.count; i++) {
-        UILabel *label = [self.scrollView viewWithTag:Title_tag+i];
+        GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (label) {
             label.textColor = self.normalColor;
             label.font = self.normalFont;

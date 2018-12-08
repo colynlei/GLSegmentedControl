@@ -19,20 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGC-x7-Y2v">
-                                <rect key="frame" x="0.0" y="114" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xgP-aP-iWr"/>
+                                    <constraint firstAttribute="height" constant="40" id="Ybc-6g-v6j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="GLSegmentedControlTitleGapTypeDefault"/>
                                 <connections>
-                                    <action selector="btn1Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2re-UO-7hm"/>
+                                    <action selector="btn1Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="26W-uK-usi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYa-qx-JGc">
-                                <rect key="frame" x="0.0" y="174" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="204" width="375" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="OA1-TG-45G"/>
+                                    <constraint firstAttribute="height" constant="40" id="WiT-UV-dgE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="GLSegmentedControlTitleGapTypeEqualGapBoth"/>
@@ -41,9 +41,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="65w-dy-z2K">
-                                <rect key="frame" x="0.0" y="234" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="264" width="375" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VY1-0a-STC"/>
+                                    <constraint firstAttribute="height" constant="40" id="xSn-Re-eJq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="GLSegmentedControlTitleGapTypeEqualGapWithoutBoth"/>
@@ -51,18 +51,32 @@
                                     <action selector="btn3Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eoG-px-Txk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-56-RC5">
+                                <rect key="frame" x="0.0" y="84" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LO5-3u-zPL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="GLSegmentedControlTitleGapTypeNone"/>
+                                <connections>
+                                    <action selector="btn0Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NTg-M2-h5q"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="65w-dy-z2K" firstAttribute="top" secondItem="KYa-qx-JGc" secondAttribute="bottom" constant="20" id="0BE-Ns-Z4u"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QGC-x7-Y2v" secondAttribute="trailing" id="4tK-tD-fub"/>
-                            <constraint firstItem="65w-dy-z2K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HCl-Cy-VpV"/>
-                            <constraint firstItem="KYa-qx-JGc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W6H-DW-L4Z"/>
-                            <constraint firstAttribute="trailing" secondItem="65w-dy-z2K" secondAttribute="trailing" id="aIA-72-7BR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KYa-qx-JGc" secondAttribute="trailing" id="bGs-QK-qIn"/>
-                            <constraint firstItem="QGC-x7-Y2v" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="ods-CF-5Q1"/>
-                            <constraint firstItem="QGC-x7-Y2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="tIl-RS-NEW"/>
-                            <constraint firstItem="KYa-qx-JGc" firstAttribute="top" secondItem="QGC-x7-Y2v" secondAttribute="bottom" constant="20" id="u7h-lS-3vN"/>
+                            <constraint firstItem="KYa-qx-JGc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Yn-HS-ynd"/>
+                            <constraint firstItem="KYa-qx-JGc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="9ud-Uw-OYo"/>
+                            <constraint firstItem="65w-dy-z2K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="JV8-ae-Qcb"/>
+                            <constraint firstItem="cKF-56-RC5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Qc5-i4-akM"/>
+                            <constraint firstItem="cKF-56-RC5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="WHM-fn-uws"/>
+                            <constraint firstItem="65w-dy-z2K" firstAttribute="top" secondItem="KYa-qx-JGc" secondAttribute="bottom" constant="20" id="WzG-e1-w92"/>
+                            <constraint firstItem="QGC-x7-Y2v" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aKP-ku-3No"/>
+                            <constraint firstItem="QGC-x7-Y2v" firstAttribute="top" secondItem="cKF-56-RC5" secondAttribute="bottom" constant="20" id="cqz-ni-O91"/>
+                            <constraint firstItem="QGC-x7-Y2v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ieZ-Hn-VRp"/>
+                            <constraint firstAttribute="trailing" secondItem="cKF-56-RC5" secondAttribute="trailing" id="vcF-Nx-bJu"/>
+                            <constraint firstItem="65w-dy-z2K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xsb-D1-z1a"/>
+                            <constraint firstItem="KYa-qx-JGc" firstAttribute="top" secondItem="QGC-x7-Y2v" secondAttribute="bottom" constant="20" id="xyb-aN-2K7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

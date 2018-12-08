@@ -12,19 +12,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 typedef NS_ENUM(NSInteger, GLSegmentedControlTitleGapType) {//间距类型
+    //无任何模式，无间距，无左右边距。宽度为等宽, 此模式一般为能容纳所有内容。
+    //titleLeft、titleRight、titleGap无效。
+    GLSegmentedControlTitleGapTypeNone,
+    
     //等间距，间距可设置，距左右两边距离可设置，
     GLSegmentedControlTitleGapTypeDefault,
     
-    //等间距，包括距左右两边距离，距左右两边距离不可设置，间距为自动计算, 此模式一般为能容纳所有内容
+    //等间距，包括距左右两边距离，距左右两边距离不可设置，间距为自动计算, 此模式一般为能容纳所有内容。
+    //titleLeft、titleRight、titleGap无效。
     GLSegmentedControlTitleGapTypeEqualGapBoth,
     
     //等间距，不包括距左右距离，距左右两边距离可设置，间距为自动计算, 此模式一般为能容纳所有内容
+    //titleLeft、titleRight有效；titleGap无效。
     GLSegmentedControlTitleGapTypeEqualGapWithoutBoth,
 };
+
+@class GLSegmentedControl;
+@protocol GLSegmentedControlDelegate <NSObject>
+
+- (void)segmentedControl:(GLSegmentedControl *)segmentedControl didSelectedIndex:(NSInteger)index;
+
+@end
 
 @interface GLSegmentedControl : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame titles:(NSArray <NSString *>* _Nonnull )titles;
+
+@property (nonatomic, weak) id<GLSegmentedControlDelegate> delegate;
 
 @property (nonatomic, strong) NSArray <NSString *>*titles;//标题数组
 

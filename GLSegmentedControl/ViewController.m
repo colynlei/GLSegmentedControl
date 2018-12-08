@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ViewController0.h"
 #import "ViewController1.h"
 #import "ViewController2.h"
 #import "ViewController3.h"
@@ -21,6 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+- (IBAction)btn0Action:(UIButton *)sender {
+    [self.navigationController pushViewController:[[ViewController0 alloc]init] animated:YES];
+
 }
 
 - (IBAction)btn1Action:(UIButton *)sender {
