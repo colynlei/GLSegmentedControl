@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.titles = @[@"北京市",@"海淀区",@"西二旗"];
@@ -31,7 +31,7 @@
     [self.view addSubview:self.segmentedControl];
     [self.view addSubview:self.scrollView];
     
-    for (NSInteger i = 0; i<self.titles.count; i++) {
+    for (NSInteger i = 0; i < self.titles.count; i++) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(i*kScreenWidth, 0, kScreenWidth, self.scrollView.frame.size.height)];
         label.backgroundColor = kColorRandomAlpha(0.3);
         label.text = [NSString stringWithFormat:@"%ld",i];
@@ -47,7 +47,7 @@
         _segmentedControl = [[GLSegmentedControl alloc] init];
         _segmentedControl.delegate = self;
         _segmentedControl.titles = self.titles;
-        _segmentedControl.backgroundColor = [UIColor whiteColor];
+        _segmentedControl.backgroundColor = [UIColor yellowColor];
         _segmentedControl.titleGapType = GLSegmentedControlTitleGapTypeNone;
     }
     return _segmentedControl;

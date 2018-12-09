@@ -104,6 +104,11 @@
     return _lineView;
 }
 
+- (void)setLineViewBackgroundColor:(UIColor *)lineViewBackgroundColor {
+    _lineViewBackgroundColor = lineViewBackgroundColor;
+    self.lineView.backgroundColor = _lineViewBackgroundColor;
+}
+
 - (NSMutableArray *)titleLabelWArray {
     if (!_titleLabelWArray) {
         _titleLabelWArray = [NSMutableArray arrayWithCapacity:0];
@@ -186,7 +191,6 @@
     CGFloat right = self.titleRight;
     BOOL isTitle_W = YES;
     
-
     switch (self.titleGapType) {
         case GLSegmentedControlTitleGapTypeNone:
         {
@@ -269,6 +273,8 @@
         }
     }
     [self setSelectedIndex:self.selectedIndex];
+    NSLog(@"%@==%@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize));
+    
 }
 
 - (CGFloat)widthWithText:(NSString *)text font:(UIFont *)font {
