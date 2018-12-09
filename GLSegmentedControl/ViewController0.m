@@ -49,6 +49,7 @@
         _segmentedControl.titles = self.titles;
         _segmentedControl.backgroundColor = [UIColor yellowColor];
         _segmentedControl.titleGapType = GLSegmentedControlTitleGapTypeNone;
+        _segmentedControl.lineViewBackgroundColor = [UIColor redColor];
     }
     return _segmentedControl;
 }
