@@ -60,6 +60,7 @@
     [self initDefault];
     [self addsubviews];
     
+    
     self.titles = titles;
 }
 
@@ -265,6 +266,8 @@
     
     [self.scrollView bringSubviewToFront:self.lineView];
     self.scrollView.frame = self.bounds;
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+    
     for (NSInteger i = 0; i < self.titles.count; i++) {
         GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
         if (label) {
@@ -273,7 +276,6 @@
         }
     }
     [self setSelectedIndex:self.selectedIndex];
-    NSLog(@"%@==%@",NSStringFromCGRect(self.scrollView.frame),NSStringFromCGSize(self.scrollView.contentSize));
     
 }
 
@@ -286,6 +288,10 @@
                                   attributes:attr context:nil];
     result = rect.size;
     return rect.size.width;
+}
+
+- (void)dealloc {
+
 }
 
 @end
