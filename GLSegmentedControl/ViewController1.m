@@ -29,12 +29,13 @@
 
 - (GLSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
-        _segmentedControl = [[GLSegmentedControl alloc] initWithFrame:self.view.bounds titles:@[@"中华人民共和国",@"北京市",@"海淀区",@"西二旗",@"西二旗中路",@"北京火币天下网络科技有限公司"]];
+        _segmentedControl = [[GLSegmentedControl alloc] initWithFrame:self.view.bounds titles:@[@"中国",@"北京市",@"海淀区"]];
         _segmentedControl.titleLeft = 16;
         _segmentedControl.titleRight = 16;
         _segmentedControl.titleGap = 20;
         _segmentedControl.lineViewSize = CGSizeMake(0, 5);
-        _segmentedControl.selectedFont = kFont_Medium(18);
+        _segmentedControl.selectedFont = kFont_Medium(14);
+        _segmentedControl.normalFont = kFont(14);
         _segmentedControl.selectedColor = [UIColor redColor];
         _segmentedControl.backgroundColor = [UIColor yellowColor];
     }

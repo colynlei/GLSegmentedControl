@@ -29,9 +29,11 @@
 - (GLSegmentedControl *)segmentedControl {
     if (!_segmentedControl) {
         _segmentedControl = [[GLSegmentedControl alloc] init];
-        _segmentedControl.titles = @[@"中华人民共和国",@"北京市",@"海淀区",@"西二旗"];
+        _segmentedControl.titles = @[@"中国",@"北京市",@"海淀区"];
         _segmentedControl.backgroundColor = [UIColor whiteColor];
         _segmentedControl.titleGapType = GLSegmentedControlTitleGapTypeEqualGapBoth;
+        _segmentedControl.normalFont = kFont(14);
+        _segmentedControl.selectedFont = kFont(14);
     }
     return _segmentedControl;
 }

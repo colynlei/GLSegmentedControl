@@ -132,20 +132,23 @@
     
     if (!titles || !titles.count) return;
     
+    for (UIView *view in self.scrollView.subviews) {
+        if ([view isKindOfClass:GLLabel.class]) {
+            [view removeFromSuperview];
+        }
+    }
+    
     for (NSInteger i = 0; i < titles.count; i++) {
         
-        GLLabel *label = [self.scrollView viewWithTag:Title_tag+i];
-        if (!label) {
-            label = [[GLLabel alloc] init];
-            label.tag = Title_tag+i;
-            label.userInteractionEnabled = YES;
-            label.textAlignment = NSTextAlignmentCenter;
-            
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleAction:)];
-            [label addGestureRecognizer:tap];
-        }
+        GLLabel *label = [[GLLabel alloc] init];
+        label.tag = Title_tag+i;
+        label.userInteractionEnabled = YES;
+        label.textAlignment = NSTextAlignmentCenter;
         label.text = titles[i];
         [self.scrollView addSubview:label];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(titleAction:)];
+        [label addGestureRecognizer:tap];
     }
     [self setNeedsLayout];
 }
@@ -283,7 +286,12 @@
             label.font = self.normalFont;
         }
     }
-    [self setSelectedIndex:self.selectedIndex];
+    if (self.selectedIndex >= self.titles.count) {
+        [self setSelectedIndex:0];
+    } else {
+        [self setSelectedIndex:self.selectedIndex];
+    }
+    
     
 }
 
